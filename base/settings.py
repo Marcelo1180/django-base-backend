@@ -34,6 +34,7 @@ DEBUG = strtobool(os.environ.get("DEBUG", "false"))
 ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS", "")]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -145,3 +146,12 @@ SWAGGER_SETTINGS = {
         "DRF Token": {"type": "apiKey", "name": "Authorization", "in": "header"}
     },
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = (
+    "x-requested-with",
+    "content-type",
+    "accept",
+    "origin",
+    "authorization",
+)
