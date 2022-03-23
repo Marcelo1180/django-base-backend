@@ -1,9 +1,18 @@
 # INSTALL django base project
 
+Setup config settings
+```sh
+cp .env.example .env
+```
+
+__DEBUG=true__ is used for debugging mode, in this mode you can use:
+- admin/ (Classic admin of django)
+- apidoc/ (Swagger api documentation)
+- logging with level DEBUG
+
 ## Installing in DEVELOPMENT MODE
 Installing general and dev dependencies
 ```sh
-pipenv install --ignore-pipfile
 pipenv install --ignore-pipfile --dev
 ```
 
@@ -27,6 +36,21 @@ Requirements:
 - Debian 10
 
 In production mode settings.json its important to set __DEBUG=false__
+
+Installing dependencies
+```sh
+pipenv install --ignore-pipfile
+```
+
+Run migrations
+```sh
+(env)$ python manage.py migrate
+```
+
+Create a super user
+```sh
+(env)$ python manage.py createsuperuser
+```
 
 Demon service install
 ```sh

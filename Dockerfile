@@ -18,6 +18,9 @@ RUN pipenv install --ignore-pipfile --deploy --system
 
 COPY --chown=nobody:nogroup . .
 
-EXPOSE 8000
+RUN mkdir static
+RUN python manage.py collectstatic --noinput
 
-CMD ["waitress-serve","--listen=0.0.0.0:8000","base.wsgi:application"]
+EXPOSE $PORT
+
+CMD ["waitress-serve","--listen=0.0.0.0:$PORT","base.wsgi:application"]
