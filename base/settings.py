@@ -17,7 +17,8 @@ from pathlib import Path
 from .core.applist import *
 from .core.database import *
 from .core.internationalization import *
-from distutils.util import strtobool
+from .core.mailserver import *
+# from distutils.util import strtobool
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,15 +28,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", "change-secret-key")
+SECRET_KEY = os.environ.get("SECRET_KEY", "change-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = strtobool(os.getenv("DEBUG", False))
-ALLOWED_HOSTS = [os.getenv("ALLOWED_HOSTS", "")]
+DEBUG = os.environ.get("DEBUG", False)
+ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS", "")]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -87,6 +89,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -143,3 +149,21 @@ SWAGGER_SETTINGS = {
         "DRF Token": {"type": "apiKey", "name": "Authorization", "in": "header"}
     },
 }
+
+# Cors headers
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = (
+    "x-requested-with",
+    "content-type",
+    "accept",
+    "origin",
+    "authorization",
+)
+
+# Enable forwarder https headers (heroku)
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# Upload files
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media/'

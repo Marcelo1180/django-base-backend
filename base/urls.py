@@ -20,11 +20,16 @@ from django.conf import settings
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from base.apps.account.views import view_status
+# from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path("", view_status),
     path("account/v1/", include("base.apps.account.urls")),
 ]
+# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 # Show apidoc if DEBUG is activated
 schema_view = get_schema_view(
@@ -54,3 +59,5 @@ if settings.DEBUG:
             name="schema-swagger-ui",
         ),
     ]
+    # ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
