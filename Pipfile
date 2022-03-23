@@ -9,6 +9,8 @@ djangorestframework = "*"
 dj-rest-auth = "*"
 django-request-logging = "*"
 drf-yasg = "*"
+waitress = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 pre-commit = "*"
