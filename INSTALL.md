@@ -46,6 +46,7 @@ pipenv install --ignore-pipfile
 Run migrations
 ```sh
 (env)$ python manage.py migrate
+(env)$ python manage.py migrate account
 ```
 
 Create a super user
