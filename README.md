@@ -13,8 +13,29 @@ This project was tested in:
 
 Setup config settings
 ```sh
-cp settings.example.json settings.json 
+cp example.env .env
 ```
+
+Setup config settings
+```sh
+cp .env.example .env
+```
+
+Delete git historic
+```sh
+rm -fr .git
+```
+
+Add your own git appname
+```sh
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin <git url repo appname>
+git push -u origin main
+```
+
 __DEBUG=true__ is used for debugging mode, in this mode you can use:
 - admin/ (Classic admin of django)
 - apidoc/ (Swagger api documentation)
