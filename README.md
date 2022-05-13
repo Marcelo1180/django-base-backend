@@ -16,11 +16,6 @@ Setup config settings
 cp example.env .env
 ```
 
-Setup config settings
-```sh
-cp .env.example .env
-```
-
 Delete git historic
 ```sh
 rm -fr .git
