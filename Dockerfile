@@ -21,4 +21,4 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE $PORT
 
-CMD ["waitress-serve","--listen=0.0.0.0:$PORT","base.wsgi:application"]
+CMD ["sh", "-c", "waitress-serve --listen=0.0.0.0:$PORT base.wsgi:application"]
